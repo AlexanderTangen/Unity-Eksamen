@@ -20,8 +20,11 @@ public class GunController : MonoBehaviour
         {
             Debug.Log("Hit: " + hit.transform.name); // Log the object hit
 
-            // If the object has a health script or tag you want to destroy, add that here
-            Destroy(hit.transform.gameObject); // This will destroy the object that was hit
+            // Check if the object has the "Destructible" tag before destroying it
+            if (hit.transform.CompareTag("Destructible"))
+            {
+                Destroy(hit.transform.gameObject); // Destroy only objects with the "Destructible" tag
+            }
         }
     }
 }
