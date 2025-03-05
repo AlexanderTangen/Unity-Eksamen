@@ -1,9 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 public class GunController : MonoBehaviour
 {
     public float range = 100f; // Shooting distance
-    public Camera fpsCamera; // Camera for the shooting view
+    public Camera fpsCamera; // Camera for shooting
+    public GameObject bulletTrailPrefab; // Bullet trail prefab
+    public Transform firePoint; // Fire point of the gun
 
     void Update()
     {
@@ -16,15 +19,39 @@ public class GunController : MonoBehaviour
     void Shoot()
     {
         RaycastHit hit;
+        Vector3 targetPoint = fpsCamera.transform.position + fpsCamera.transform.forward * range;
+
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
-            Debug.Log("Hit: " + hit.transform.name); // Log the object hit
+            targetPoint = hit.point; // If we hit something, update the target point
+            Debug.Log("Hit: " + hit.transform.name);
 
-            // Check if the object has the "Destructible" tag before destroying it
             if (hit.transform.CompareTag("Destructible"))
             {
-                Destroy(hit.transform.gameObject); // Destroy only objects with the "Destructible" tag
+                Destroy(hit.transform.gameObject); // Destroy objects with the "Destructible" tag
             }
         }
+
+        StartCoroutine(SpawnBulletTrail(targetPoint));
+    }
+
+    IEnumerator SpawnBulletTrail(Vector3 target)
+    {
+        GameObject trail = Instantiate(bulletTrailPrefab, firePoint.position, Quaternion.identity);
+        TrailRenderer trailRenderer = trail.GetComponent<TrailRenderer>();
+
+        Vector3 startPosition = firePoint.position;
+        float duration = 0.1f; // Time it takes for the trail to reach the target
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            trail.transform.position = Vector3.Lerp(startPosition, target, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        trail.transform.position = target;
+        Destroy(trail, trailRenderer.time); // Destroy trail after it fades
     }
 }
