@@ -3,14 +3,14 @@ using System.Collections;
 
 public class GunController : MonoBehaviour
 {
-    public float range = 100f; // Shooting distance
-    public Camera fpsCamera; // Camera for shooting
-    public GameObject bulletTrailPrefab; // Bullet trail prefab
-    public Transform firePoint; // Fire point of the gun
+    public float range = 100f;
+    public Camera fpsCamera; 
+    public GameObject bulletTrailPrefab; 
+    public Transform firePoint; 
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) // Left mouse click
+        if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
         }
@@ -23,12 +23,12 @@ public class GunController : MonoBehaviour
 
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
-            targetPoint = hit.point; // If we hit something, update the target point
+            targetPoint = hit.point; 
             Debug.Log("Hit: " + hit.transform.name);
 
             if (hit.transform.CompareTag("Destructible"))
             {
-                Destroy(hit.transform.gameObject); // Destroy objects with the "Destructible" tag
+                Destroy(hit.transform.gameObject); 
             }
         }
 
@@ -41,7 +41,7 @@ public class GunController : MonoBehaviour
         TrailRenderer trailRenderer = trail.GetComponent<TrailRenderer>();
 
         Vector3 startPosition = firePoint.position;
-        float duration = 0.1f; // Time it takes for the trail to reach the target
+        float duration = 0.1f; 
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
@@ -52,6 +52,6 @@ public class GunController : MonoBehaviour
         }
 
         trail.transform.position = target;
-        Destroy(trail, trailRenderer.time); // Destroy trail after it fades
+        Destroy(trail, trailRenderer.time); 
     }
 }
