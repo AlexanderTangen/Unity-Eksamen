@@ -1773,20 +1773,6 @@ PrefabInstance:
     - target: {fileID: 100000, guid: dec4e356da82ab342a89629bc655312a, type: 3}
       propertyPath: m_Name
       value: barrel_open
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dec4e356da82ab342a89629bc655312a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dec4e356da82ab342a89629bc655312a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.7812098
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dec4e356da82ab342a89629bc655312a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: dec4e356da82ab342a89629bc655312a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
@@ -3258,7 +3244,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8ac875dd7dc9d124ab19c2cb5b1e34d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
