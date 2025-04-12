@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae794f9e-9dae-40b2-9565-426af57dfd85" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Eksamen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Eksamen/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ae794f9e-9dae-40b2-9565-426af57dfd85" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744369971073</updated>
       <workItem from="1744369971367" duration="1528000" />
-      <workItem from="1744402457291" duration="4169000" />
+      <workItem from="1744402457291" duration="4846000" />
     </task>
     <servers />
   </component>

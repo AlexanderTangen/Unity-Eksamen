@@ -8,6 +8,14 @@ public class GunController : MonoBehaviour
     public GameObject bulletTrailPrefab; 
     public Transform firePoint; 
 
+    public AudioClip gunshotSound; // 🎵 Add this
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>(); // 🔊 Get the AudioSource on start
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -18,6 +26,12 @@ public class GunController : MonoBehaviour
 
     void Shoot()
     {
+        // 🔫 Play the gunshot sound
+        if (gunshotSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(gunshotSound);
+        }
+
         RaycastHit hit;
         Vector3 targetPoint = fpsCamera.transform.position + fpsCamera.transform.forward * range;
 
