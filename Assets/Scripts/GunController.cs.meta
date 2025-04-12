@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1e92fed270b1c4379ba6456081eec89f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fpsCamera: {instanceID: 0}
+  - bulletTrailPrefab: {fileID: 4224349921909472711, guid: 341335bab94aa495fa2e40f97da88eaa, type: 3}
+  - firePoint: {instanceID: 0}
+  - gunshotSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
