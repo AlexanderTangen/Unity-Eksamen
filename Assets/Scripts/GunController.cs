@@ -11,6 +11,8 @@ public class GunController : MonoBehaviour
     public AudioClip gunshotSound; // 🎵 Add this
     private AudioSource audioSource;
 
+    public int damage = 1; // 👾 Set the amount of damage per shot
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>(); // 🔊 Get the AudioSource on start
@@ -40,9 +42,14 @@ public class GunController : MonoBehaviour
             targetPoint = hit.point; 
             Debug.Log("Hit: " + hit.transform.name);
 
+            // Check if the object hit is destructible (has AlienHealth component)
             if (hit.transform.CompareTag("Destructible"))
             {
-                Destroy(hit.transform.gameObject); 
+                AlienHealth alienHealth = hit.transform.GetComponent<AlienHealth>();
+                if (alienHealth != null)
+                {
+                    alienHealth.TakeDamage(damage); // 🛠️ Deal damage
+                }
             }
         }
 
