@@ -472,6 +472,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   respawnDelay: 3
+  hitColor: {r: 0, g: 1, b: 0, a: 0.5}
+  flashDuration: 0.1
+  emissionIntensity: 0.5
 --- !u!136 &546817005
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2696,8 +2699,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9830fca2b57fd4be4aad430bf0b34b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 5
   respawnDelay: 3
+  hitColor: {r: 0.04337597, g: 0.5, b: 0, a: 0.5}
+  flashDuration: 0.1
+  emissionIntensity: 0.3
 --- !u!54 &2147120419
 Rigidbody:
   m_ObjectHideFlags: 0
