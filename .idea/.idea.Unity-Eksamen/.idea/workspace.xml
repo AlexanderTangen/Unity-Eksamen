@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae794f9e-9dae-40b2-9565-426af57dfd85" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlienHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlienHealth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Eksamen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Eksamen/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +98,7 @@
       <workItem from="1744402457291" duration="5481000" />
       <workItem from="1744503835323" duration="992000" />
       <workItem from="1744828602051" duration="353000" />
+      <workItem from="1744837901695" duration="716000" />
     </task>
     <servers />
   </component>
