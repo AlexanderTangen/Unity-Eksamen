@@ -798,7 +798,7 @@ MonoBehaviour:
   startText: {fileID: 15525133}
   quitText: {fileID: 1583188367}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverColor: {r: 1, g: 0, b: 0, a: 1}
+  hoverColor: {r: 0.6039216, g: 0.003921569, b: 0.09803922, a: 1}
 --- !u!1 &1749258526
 GameObject:
   m_ObjectHideFlags: 0
