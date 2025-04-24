@@ -64,9 +64,9 @@ public class AlienHealth : MonoBehaviour
         // Set the flash color and lower the emission intensity (subtle glow)
         foreach (Material mat in alienMaterials)
         {
-            mat.color = hitColor; // Apply the flash color
-            mat.SetColor("_EmissionColor", hitColor * emissionIntensity); // Apply dimmed emission
-            mat.EnableKeyword("_EMISSION"); // Ensure emission is enabled
+            mat.color = hitColor;
+            mat.SetColor("_EmissionColor", hitColor * emissionIntensity);
+            mat.EnableKeyword("_EMISSION");
         }
 
         // Wait for the flash duration
@@ -75,14 +75,20 @@ public class AlienHealth : MonoBehaviour
         // Reset color and turn off emission
         foreach (Material mat in alienMaterials)
         {
-            mat.color = originalColor; // Restore original color
-            mat.SetColor("_EmissionColor", Color.black); // Turn off emission
-            mat.DisableKeyword("_EMISSION"); // Disable emission keyword
+            mat.color = originalColor;
+            mat.SetColor("_EmissionColor", Color.black);
+            mat.DisableKeyword("_EMISSION");
         }
     }
 
     void Die()
     {
+        // Register kill in GameManager
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RegisterGhostKill();
+        }
+
         if (alienAI != null) alienAI.enabled = false;
         foreach (var r in renderers) r.enabled = false;
         foreach (var c in colliders) c.enabled = false;
@@ -114,5 +120,3 @@ public class AlienHealth : MonoBehaviour
         Debug.Log($"{gameObject.name} respawned at original location!");
     }
 }
-
-
