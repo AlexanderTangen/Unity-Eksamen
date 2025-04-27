@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;  // Add this for UI reference
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,10 +12,22 @@ public class PauseMenu : MonoBehaviour
     public FirstPersonController firstPersonController;  // Reference to FirstPersonController script
     public GunController gunController;  // Reference to GunController script
 
+    // Reference to the Resume Button
+    public GameObject resumeButton;
+
+    // Reference to the Crosshair GameObject (that contains KillCountTextLegacy, Healthbar, Image)
+    public GameObject crosshair;  // Drag your Crosshair GameObject here
+
+    // Add audio sources to mute during pause (optional)
+    public AudioSource[] audioSources;
+
     void Start()
     {
         // Ensure the pause menu is disabled when the game starts
         pauseMenuUI.SetActive(false);
+
+        // Initialize audio sources if necessary
+        audioSources = FindObjectsOfType<AudioSource>();
     }
 
     void Update()
@@ -39,8 +53,19 @@ public class PauseMenu : MonoBehaviour
         firstPersonController.enabled = true;
         gunController.enabled = true;
 
-        // Resume audio playback
+        // Resume all audio playback
         AudioListener.pause = false;
+        SetAudioMute(false);
+
+        // Lock cursor and hide it (optional)
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        // Enable the Crosshair
+        if (crosshair != null)
+        {
+            crosshair.SetActive(true);  // Enable Crosshair GameObject
+        }
     }
 
     // Function to pause the game
@@ -56,6 +81,30 @@ public class PauseMenu : MonoBehaviour
 
         // Pause all audio playback
         AudioListener.pause = true;
+        SetAudioMute(true);
+
+        // Unlock the cursor and make it visible
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // Disable the Crosshair GameObject while paused to allow button interaction
+        if (crosshair != null)
+        {
+            crosshair.SetActive(false);  // Disable the entire Crosshair GameObject
+        }
+
+        // Ensure EventSystem is active and set the Resume button as selected
+        EventSystem.current.SetSelectedGameObject(null);  // Reset selection
+        EventSystem.current.SetSelectedGameObject(resumeButton);  // Select the resume button
+    }
+
+    // Function to mute/unmute all audio sources
+    private void SetAudioMute(bool mute)
+    {
+        foreach (var audioSource in audioSources)
+        {
+            audioSource.mute = mute;
+        }
     }
 
     // Function to quit the game (for when the player clicks 'Quit' in the pause menu)

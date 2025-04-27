@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    public int ghostKillCount = 0;  // This will track the number of kills
 
     private void Awake()
     {
@@ -18,18 +21,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Method to register a kill (increment the kill count)
     public void RegisterGhostKill()
     {
-        // Your logic here...
+        ghostKillCount++; // Increment kill count when a ghost is killed
     }
 
+    // Get the current kill count
     public int GetKillCount()
     {
-        return 0; // Your kill count logic...
+        return ghostKillCount;
     }
 
     // Optionally, listen for when we go back to the MainMenu and clean up
-    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "MainMenu")
         {
@@ -39,11 +44,11 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
