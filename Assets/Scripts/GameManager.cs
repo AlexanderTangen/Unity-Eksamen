@@ -4,30 +4,46 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private int ghostKillCount = 0;
-
-    void Awake()
+    private void Awake()
     {
-        // Singleton pattern
+        // Ensure only one instance exists (Singleton pattern)
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: keep across scenes
+            DontDestroyOnLoad(gameObject); // Keep it across scenes (but we'll control when it's destroyed)
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // Destroy duplicate instance
         }
     }
 
     public void RegisterGhostKill()
     {
-        ghostKillCount++;
-        Debug.Log($"Ghost killed! Total kills: {ghostKillCount}");
+        // Your logic here...
     }
 
     public int GetKillCount()
     {
-        return ghostKillCount;
+        return 0; // Your kill count logic...
+    }
+
+    // Optionally, listen for when we go back to the MainMenu and clean up
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        if (scene.name == "MainMenu")
+        {
+            Destroy(gameObject); // Destroy GameManager when we load the MainMenu
+        }
+    }
+
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

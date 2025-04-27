@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // <-- Add this
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth = 100f;
     private float currentHealth;
 
-    public Slider healthSlider; // <-- Drag the Slider here from the UI
+    public Slider healthSlider; // Drag the Slider here from the UI
 
     private void Start()
     {
@@ -38,6 +38,6 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player Died! Returning to Main Menu.");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu"); // Load the Main Menu scene when player dies
     }
 }

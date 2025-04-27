@@ -54,12 +54,50 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Game"); // Load the Game scene by name
     }
 
     public void QuitGame()
     {
         Debug.Log("Quitting game...");
         Application.Quit();
+    }
+
+    // Reset input and UI focus when transitioning to the MainMenu scene
+    private void OnEnable()
+    {
+        // Add listener when the scene is loaded
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        // Remove listener when the scene is unloaded
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MainMenu")
+        {
+            ResetInput();
+        }
+    }
+
+    private void ResetInput()
+    {
+        // Reset the EventSystem's selected object to ensure UI interaction works properly
+        EventSystem.current.SetSelectedGameObject(null);
+
+        // Unlock and show the cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // Ensure the Canvas is enabled
+        Canvas mainMenuCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        if (mainMenuCanvas != null)
+        {
+            mainMenuCanvas.enabled = true;
+        }
     }
 }
