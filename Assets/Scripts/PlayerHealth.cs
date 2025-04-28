@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     private float currentHealth;
 
     public Slider healthSlider; // Drag the Slider here from the UI
+    public DamageIndicator damageIndicator; // <-- ADD THIS (reference to DamageIndicator)
 
     private void Start()
     {
@@ -20,6 +21,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthUI();
+
+        if (damageIndicator != null)  // <-- Trigger blood effect
+        {
+            damageIndicator.ShowDamageEffect();
+        }
 
         if (currentHealth <= 0)
         {
