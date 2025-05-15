@@ -3,10 +3,10 @@ using UnityEngine.AI;
 
 public class AlienAI : MonoBehaviour
 {
-    public float chaseRange = 15f;         // Distance at which alien starts chasing
-    public float stopDistance = 1.5f;      // Distance at which alien stops chasing
-    public float wanderRadius = 10f;       // How far it can wander
-    public float wanderTimer = 5f;         // How often it picks a new wander point
+    public float chaseRange = 15f;         
+    public float stopDistance = 1.5f;      
+    public float wanderRadius = 10f;       
+    public float wanderTimer = 5f;         
 
     private Transform player;
     private NavMeshAgent agent;
@@ -34,12 +34,11 @@ public class AlienAI : MonoBehaviour
         {
             if (distance > stopDistance)
             {
-                agent.SetDestination(player.position);  // Chase the player
+                agent.SetDestination(player.position);  
             }
             else
             {
-                agent.ResetPath();  // Stop when too close
-                // You could add attack animation here
+                agent.ResetPath(); 
             }
         }
         else

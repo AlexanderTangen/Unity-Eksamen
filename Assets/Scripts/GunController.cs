@@ -4,22 +4,24 @@ using System.Collections;
 public class GunController : MonoBehaviour
 {
     public float range = 100f;
-    public Camera fpsCamera; 
-    public GameObject bulletTrailPrefab; 
-    public Transform firePoint; 
+    public Camera fpsCamera;
+    public GameObject bulletTrailPrefab;
+    public Transform firePoint;
 
-    public AudioClip gunshotSound; // 🎵 Add this
+    public AudioClip gunshotSound;
     private AudioSource audioSource;
 
-    public int damage = 1; // 👾 Set the amount of damage per shot
+    public int damage = 1;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>(); // 🔊 Get the AudioSource on start
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
@@ -28,7 +30,6 @@ public class GunController : MonoBehaviour
 
     void Shoot()
     {
-        // 🔫 Play the gunshot sound
         if (gunshotSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(gunshotSound);
@@ -42,13 +43,12 @@ public class GunController : MonoBehaviour
             targetPoint = hit.point; 
             Debug.Log("Hit: " + hit.transform.name);
 
-            // Check if the object hit is destructible (has AlienHealth component)
             if (hit.transform.CompareTag("Destructible"))
             {
                 AlienHealth alienHealth = hit.transform.GetComponent<AlienHealth>();
                 if (alienHealth != null)
                 {
-                    alienHealth.TakeDamage(damage); // 🛠️ Deal damage
+                    alienHealth.TakeDamage(damage);
                 }
             }
         }
@@ -76,3 +76,4 @@ public class GunController : MonoBehaviour
         Destroy(trail, trailRenderer.time); 
     }
 }
+

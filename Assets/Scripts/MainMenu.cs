@@ -21,8 +21,7 @@ public class MainMenu : MonoBehaviour
     {
         startButton.onClick.AddListener(StartGame);
         quitButton.onClick.AddListener(QuitGame);
-
-        // Add hover listeners
+        
         AddHoverEvents(startButton, startText);
         AddHoverEvents(quitButton, quitText);
     }
@@ -34,16 +33,14 @@ public class MainMenu : MonoBehaviour
             trigger = button.gameObject.AddComponent<EventTrigger>();
 
         trigger.triggers = new System.Collections.Generic.List<EventTrigger.Entry>();
-
-        // OnPointerEnter
+        
         EventTrigger.Entry entryEnter = new EventTrigger.Entry
         {
             eventID = EventTriggerType.PointerEnter
         };
         entryEnter.callback.AddListener((eventData) => { text.color = hoverColor; });
         trigger.triggers.Add(entryEnter);
-
-        // OnPointerExit
+        
         EventTrigger.Entry entryExit = new EventTrigger.Entry
         {
             eventID = EventTriggerType.PointerExit
@@ -54,7 +51,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Game"); // Load the Game scene by name
+        SceneManager.LoadScene("Game");
     }
 
     public void QuitGame()
@@ -62,17 +59,14 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quitting game...");
         Application.Quit();
     }
-
-    // Reset input and UI focus when transitioning to the MainMenu scene
+    
     private void OnEnable()
     {
-        // Add listener when the scene is loaded
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        // Remove listener when the scene is unloaded
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -86,14 +80,11 @@ public class MainMenu : MonoBehaviour
 
     private void ResetInput()
     {
-        // Reset the EventSystem's selected object to ensure UI interaction works properly
         EventSystem.current.SetSelectedGameObject(null);
-
-        // Unlock and show the cursor
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        // Ensure the Canvas is enabled
+        
         Canvas mainMenuCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         if (mainMenuCanvas != null)
         {

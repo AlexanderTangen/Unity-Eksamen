@@ -7,8 +7,8 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
 
-    public Slider healthSlider; // Drag the Slider here from the UI
-    public DamageIndicator damageIndicator; // <-- ADD THIS (reference to DamageIndicator)
+    public Slider healthSlider; 
+    public DamageIndicator damageIndicator; 
 
     private void Start()
     {
@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthUI();
 
-        if (damageIndicator != null)  // <-- Trigger blood effect
+        if (damageIndicator != null)  
         {
             damageIndicator.ShowDamageEffect();
         }
@@ -44,6 +44,6 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player Died! Returning to Main Menu.");
-        SceneManager.LoadScene("MainMenu"); // Load the Main Menu scene when player dies
+        SceneManager.LoadScene("MainMenu"); 
     }
 }

@@ -6,6 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="ae794f9e-9dae-40b2-9565-426af57dfd85" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Eksamen/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Eksamen/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FirstPersonCharacter/Scripts/GunController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FirstPersonCharacter/Scripts/GunController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FirstPersonCharacter/Scripts/MouseLook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FirstPersonCharacter/Scripts/MouseLook.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlienAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlienAI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AlienHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AlienHealth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DamageIndicator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DamageIndicator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EventSystemCleaner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EventSystemCleaner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GhostDamage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GhostDamage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GunController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GunController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/KillCounterUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/KillCounterUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PauseMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerHealth.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +58,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/The Lantern Beta v2.app/Contents/MacOS/The Lantern" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/The Lantern Beta.app/Contents/MacOS" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.0.34f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
@@ -101,7 +123,8 @@
       <workItem from="1744828602051" duration="353000" />
       <workItem from="1744837901695" duration="3531000" />
       <workItem from="1744987046836" duration="11184000" />
-      <workItem from="1745848600062" duration="1506000" />
+      <workItem from="1745848600062" duration="4410000" />
+      <workItem from="1747301037247" duration="1807000" />
     </task>
     <servers />
   </component>

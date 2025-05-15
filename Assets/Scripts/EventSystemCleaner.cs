@@ -10,12 +10,11 @@ public class EventSystemCleaner : MonoBehaviour
         if (instance == null)
         {
             instance = GetComponent<EventSystem>();
-            // No more DontDestroyOnLoad here!
             instance = GetComponent<EventSystem>();
         }
         else
         {
-            Destroy(gameObject); // Destroy any duplicate EventSystem
+            Destroy(gameObject); 
         }
     }
 }

@@ -5,7 +5,7 @@ public class DamageIndicator : MonoBehaviour
 {
     public Image bloodOverlay;
     public float fadeSpeed = 2f;
-    public Color bloodColor = new Color(1, 0, 0, 0.5f); // red with 50% opacity
+    public Color bloodColor = new Color(1, 0, 0, 0.5f); 
 
     private bool isTakingDamage = false;
 
@@ -13,7 +13,7 @@ public class DamageIndicator : MonoBehaviour
     {
         if (!isTakingDamage && bloodOverlay.color.a > 0)
         {
-            // Fade out the blood overlay
+            //Blod overlay fading
             bloodOverlay.color = Color.Lerp(bloodOverlay.color, new Color(1, 0, 0, 0), fadeSpeed * Time.deltaTime);
         }
         isTakingDamage = false;

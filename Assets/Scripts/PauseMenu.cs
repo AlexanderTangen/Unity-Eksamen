@@ -1,38 +1,35 @@
 using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;  // Add this for UI reference
+using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     private bool isPaused = false;
-
-    // Add references to the FirstPersonController and GunController scripts
-    public FirstPersonController firstPersonController;  // Reference to FirstPersonController script
-    public GunController gunController;  // Reference to GunController script
-
-    // Reference to the Resume Button
+    
+    public FirstPersonController firstPersonController;
+    public GunController gunController;
+    
     public GameObject resumeButton;
 
-    // Reference to the Crosshair GameObject (that contains KillCountTextLegacy, Healthbar, Image)
-    public GameObject crosshair;  // Drag your Crosshair GameObject here
-
-    // Add audio sources to mute during pause (optional)
+    // Crosshair
+    public GameObject crosshair;
+    
     public AudioSource[] audioSources;
+    
+    public AudioListener mainAudioListener;
 
     void Start()
     {
-        // Ensure the pause menu is disabled when the game starts
+        // Pause meny deaktivert når spillet starter
         pauseMenuUI.SetActive(false);
-
-        // Initialize audio sources if necessary
         audioSources = FindObjectsOfType<AudioSource>();
+        mainAudioListener = FindObjectOfType<AudioListener>();
     }
 
     void Update()
     {
-        // Check for Escape key press to toggle pause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -42,75 +39,90 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    // Function to resume the game
+    // Fortsette spill funksjon 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);  // Disable the pause menu
-        Time.timeScale = 1f;  // Resume time
+        pauseMenuUI.SetActive(false); 
+        Time.timeScale = 1f;  
         isPaused = false;
-
-        // Enable player controls and gun controls when resuming
+        
         firstPersonController.enabled = true;
         gunController.enabled = true;
+        
+        ResumeAllSounds();
 
-        // Resume all audio playback
-        AudioListener.pause = false;
-        SetAudioMute(false);
-
-        // Lock cursor and hide it (optional)
+        // Låse og skjule musepeker
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        // Enable the Crosshair
+        
         if (crosshair != null)
         {
-            crosshair.SetActive(true);  // Enable Crosshair GameObject
+            crosshair.SetActive(true); 
         }
     }
 
-    // Function to pause the game
+    // Pause spill
     public void Pause()
     {
-        pauseMenuUI.SetActive(true);  // Enable the pause menu
-        Time.timeScale = 0f;  // Pause time
+        pauseMenuUI.SetActive(true);  
+        Time.timeScale = 0f;  
         isPaused = true;
-
-        // Disable player controls and gun controls when pausing
+        
         firstPersonController.enabled = false;
         gunController.enabled = false;
-
-        // Pause all audio playback
-        AudioListener.pause = true;
-        SetAudioMute(true);
-
-        // Unlock the cursor and make it visible
+        
+        PauseAllSounds();
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        // Disable the Crosshair GameObject while paused to allow button interaction
+        
         if (crosshair != null)
         {
-            crosshair.SetActive(false);  // Disable the entire Crosshair GameObject
+            crosshair.SetActive(false);  
         }
-
-        // Ensure EventSystem is active and set the Resume button as selected
-        EventSystem.current.SetSelectedGameObject(null);  // Reset selection
-        EventSystem.current.SetSelectedGameObject(resumeButton);  // Select the resume button
+        
+        EventSystem.current.SetSelectedGameObject(null); 
+        EventSystem.current.SetSelectedGameObject(resumeButton);  
     }
-
-    // Function to mute/unmute all audio sources
-    private void SetAudioMute(bool mute)
+    
+    private void PauseAllSounds()
     {
-        foreach (var audioSource in audioSources)
+        if (mainAudioListener != null)
         {
-            audioSource.mute = mute;
+            AudioListener.pause = true; 
+        }
+        
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (var source in allAudioSources)
+        {
+            if (source.isPlaying)
+            {
+                source.Pause(); 
+            }
         }
     }
+    private void ResumeAllSounds()
+    {
+        if (mainAudioListener != null)
+        {
+            AudioListener.pause = false; 
+        }
 
-    // Function to quit the game (for when the player clicks 'Quit' in the pause menu)
+        // Gjennopta lyd
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        foreach (var source in allAudioSources)
+        {
+            if (!source.isPlaying)
+            {
+                source.UnPause();  
+            }
+        }
+    }
+    
     public void QuitGame()
     {
         Debug.Log("Quitting game...");
         Application.Quit();
     }
 }
+

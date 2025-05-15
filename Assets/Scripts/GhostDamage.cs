@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class GhostDamage : MonoBehaviour
 {
-    public float damagePerSecond = 5f;  // Damage dealt per second
-    public float detectionRadius = 3f;  // Radius to check for player proximity
+    public float damagePerSecond = 5f;
+    public float detectionRadius = 3f;
     private Transform player;
     private bool isPlayerNear = false;
 
     private void Start()
     {
-        // Find the player by tag, ensure player has the tag "Player"
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 

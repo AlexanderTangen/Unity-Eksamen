@@ -15,10 +15,10 @@ public class AlienHealth : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
 
-    // For color and emission flash effect
-    public Color hitColor = new Color(0f, 1f, 0f, 0.25f); // Dimmed green color with less intensity
-    public float flashDuration = 0.1f; // Duration of the flash
-    public float emissionIntensity = 0.1f; // Lower intensity for a more subtle glow
+    // Grønn flash effect 
+    public Color hitColor = new Color(0f, 1f, 0f, 0.25f); 
+    public float flashDuration = 0.1f; 
+    public float emissionIntensity = 0.1f; 
 
     private Material[] alienMaterials;
     private Color originalColor;
@@ -33,15 +33,12 @@ public class AlienHealth : MonoBehaviour
         alienAI = GetComponent<AlienAI>();
         renderers = GetComponentsInChildren<Renderer>();
         colliders = GetComponentsInChildren<Collider>();
-
-        // Get materials from all renderers
+        
         alienMaterials = new Material[renderers.Length];
         for (int i = 0; i < renderers.Length; i++)
         {
             alienMaterials[i] = renderers[i].material;
         }
-
-        // Store the original color of the materials
         originalColor = alienMaterials[0].color;
     }
 
@@ -49,8 +46,7 @@ public class AlienHealth : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log($"{gameObject.name} took {damage} damage! HP left: {currentHealth}");
-
-        // Flash the color and glow green
+        
         StartCoroutine(FlashColor());
 
         if (currentHealth <= 0)
@@ -61,18 +57,14 @@ public class AlienHealth : MonoBehaviour
 
     IEnumerator FlashColor()
     {
-        // Set the flash color and lower the emission intensity (subtle glow)
         foreach (Material mat in alienMaterials)
         {
             mat.color = hitColor;
             mat.SetColor("_EmissionColor", hitColor * emissionIntensity);
             mat.EnableKeyword("_EMISSION");
         }
-
-        // Wait for the flash duration
         yield return new WaitForSeconds(flashDuration);
-
-        // Reset color and turn off emission
+        
         foreach (Material mat in alienMaterials)
         {
             mat.color = originalColor;
@@ -83,7 +75,6 @@ public class AlienHealth : MonoBehaviour
 
     void Die()
     {
-        // Register kill in GameManager
         if (GameManager.Instance != null)
         {
             GameManager.Instance.RegisterGhostKill();
@@ -99,8 +90,7 @@ public class AlienHealth : MonoBehaviour
     IEnumerator RespawnAfterDelay()
     {
         yield return new WaitForSeconds(respawnDelay);
-
-        // Move back to original spawn point
+        
         transform.position = originalPosition;
         transform.rotation = originalRotation;
 

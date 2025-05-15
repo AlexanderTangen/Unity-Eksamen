@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI; // Use legacy UI namespace
+using UnityEngine.UI;
 
 public class KillCounterUI : MonoBehaviour
 {
-    public Text killCountText; // Legacy Text component
+    public Text killCountText;
 
     void Update()
     {
